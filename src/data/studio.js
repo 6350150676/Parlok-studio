@@ -6,5 +6,5 @@ export const studio = {
     'hand-made games — the kind you can pick up in a second and still think about ' +
     'afterwards. No timers on your patience, no menus in the way. One good idea per ' +
     'game, built properly.',
-  email: 'hello@parlokstudio.com',
+  email: 'parlokstudio@gmail.com',
 }

@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { getGame } from '../data/games'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 import InkMark from '../components/InkMark'
 import StoreLinks from '../components/StoreLinks'
 import NotFound from './NotFound'
@@ -7,6 +8,7 @@ import NotFound from './NotFound'
 export default function Game() {
   const { slug } = useParams()
   const game = getGame(slug)
+  useDocumentTitle(game?.title ?? null)
 
   if (!game) return <NotFound />
 

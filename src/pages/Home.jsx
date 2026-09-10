@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
 import { studio } from '../data/studio'
 import { games } from '../data/games'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 import InkMark from '../components/InkMark'
 import StatusPill from '../components/StatusPill'
 
 export default function Home() {
+  useDocumentTitle(null)
+
   return (
     <div className="rise pt-16 sm:pt-24">
       <p className="font-display text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-500">

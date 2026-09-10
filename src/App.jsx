@@ -3,6 +3,7 @@ import { studio } from './data/studio'
 import InkMark from './components/InkMark'
 import Home from './pages/Home'
 import Game from './pages/Game'
+import Privacy from './pages/Privacy'
 import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
       <main className="mx-auto w-full max-w-2xl flex-1 px-6 pb-24">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="/:slug" element={<Game />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -38,12 +40,20 @@ export default function App() {
           <p className="font-display text-xs tracking-wide text-neutral-600">
             © {new Date().getFullYear()} {studio.name}
           </p>
-          <a
-            href={`mailto:${studio.email}`}
-            className="text-xs text-neutral-600 transition hover:text-neutral-300"
-          >
-            {studio.email}
-          </a>
+          <div className="flex items-center gap-5">
+            <Link
+              to="/privacy"
+              className="text-xs text-neutral-600 transition hover:text-neutral-300"
+            >
+              Privacy
+            </Link>
+            <a
+              href={`mailto:${studio.email}`}
+              className="text-xs text-neutral-600 transition hover:text-neutral-300"
+            >
+              {studio.email}
+            </a>
+          </div>
         </div>
       </footer>
     </div>

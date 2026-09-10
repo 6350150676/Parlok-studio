@@ -1,9 +1,10 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import { studio } from './data/studio'
 import InkMark from './components/InkMark'
 import Home from './pages/Home'
 import Game from './pages/Game'
-import Privacy from './pages/Privacy'
+import GamePrivacy from './pages/GamePrivacy'
+import { firstPolicySlug } from './policies'
 import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -29,8 +30,15 @@ export default function App() {
       <main className="mx-auto w-full max-w-5xl flex-1 px-6 pb-24 sm:px-8">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/privacy" element={<Privacy />} />
+          {/* the studio-level URL predates per-game policies; keep it working */}
+          <Route
+            path="/privacy"
+            element={
+              firstPolicySlug ? <Navigate to={`/${firstPolicySlug}/privacy`} replace /> : <NotFound />
+            }
+          />
           <Route path="/:slug" element={<Game />} />
+          <Route path="/:slug/privacy" element={<GamePrivacy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
@@ -41,12 +49,14 @@ export default function App() {
             © {new Date().getFullYear()} {studio.name}
           </p>
           <div className="flex items-center gap-5">
-            <Link
-              to="/privacy"
-              className="text-xs text-neutral-600 transition hover:text-neutral-300"
-            >
-              Privacy
-            </Link>
+            {firstPolicySlug && (
+              <Link
+                to={`/${firstPolicySlug}/privacy`}
+                className="text-xs text-neutral-600 transition hover:text-neutral-300"
+              >
+                Privacy
+              </Link>
+            )}
             <a
               href={`mailto:${studio.email}`}
               className="text-xs text-neutral-600 transition hover:text-neutral-300"

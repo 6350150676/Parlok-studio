@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { getGame } from '../data/games'
+import { getPolicy } from '../policies'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import InkMark from '../components/InkMark'
 import StoreLinks from '../components/StoreLinks'
@@ -8,6 +9,7 @@ import NotFound from './NotFound'
 export default function Game() {
   const { slug } = useParams()
   const game = getGame(slug)
+  const hasPolicy = Boolean(getPolicy(slug))
   useDocumentTitle(game?.title ?? null)
 
   if (!game) return <NotFound />
@@ -33,6 +35,15 @@ export default function Game() {
           </h1>
           <p className="mt-3 font-display text-lg leading-snug text-neutral-400">{game.tagline}</p>
           <StoreLinks game={game} />
+
+          {hasPolicy && (
+            <Link
+              to={`/${slug}/privacy`}
+              className="mt-6 inline-block text-sm text-neutral-500 transition hover:text-neutral-200"
+            >
+              Privacy policy
+            </Link>
+          )}
         </header>
 
         <div className="mt-12 lg:mt-0">

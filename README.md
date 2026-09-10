@@ -29,6 +29,23 @@ at `/<slug>` — Cat Rescue is at `/cat-rescue`.
 
 Studio name, motto and the home-page paragraph live in `src/data/studio.js`.
 
+## Privacy policies
+
+Each game has its own policy at `/<slug>/privacy` — Cat Rescue's is at
+`/cat-rescue/privacy`. That's the URL to give the Play Console listing, since
+Google wants one policy per app rather than one per studio.
+
+To add a policy for a new game:
+
+1. Copy `src/policies/cat-rescue.jsx` to `src/policies/<slug>.jsx` and edit the text.
+2. Register it in `src/policies/index.js`.
+
+The page furniture (headings, bullets, the contents nav) comes from
+`src/components/policy.jsx`, so a policy file is only its own words.
+
+`/privacy` redirects to the first registered policy, so the older studio-level
+URL keeps working.
+
 ## Hosting
 
 Deployed to Cloudflare Workers, connected to this repo — every push to `main`

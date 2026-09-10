@@ -9,7 +9,7 @@ const EFFECTIVE = 'September 11, 2026'
 const UPDATED = 'September 11, 2026'
 
 const Section = ({ n, title, children }) => (
-  <section className="mt-12">
+  <section id={`s${n}`} className="mt-12 scroll-mt-28 first:mt-0">
     <h2 className="font-display text-lg font-semibold tracking-tight text-neutral-100">
       <span className="mr-2 text-neutral-600">{n}.</span>
       {title}
@@ -52,6 +52,45 @@ const Site = ({ href = SITE }) => (
   </a>
 )
 
+const SECTIONS = [
+  'Developer Information',
+  'Information We Collect',
+  'How We Use This Information',
+  'Advertising',
+  'Analytics',
+  'User Accounts',
+  'Third-Party Service — Supabase',
+  'Data Retention',
+  'Data Deletion Requests',
+  'Information We Do Not Collect',
+  'Security',
+  "Children's Privacy",
+  'Privacy Rights',
+  'Changes to This Privacy Policy',
+  'Contact',
+]
+
+const Contents = () => (
+  <nav aria-label="Contents" className="lg:sticky lg:top-28 lg:self-start">
+    <h2 className="font-display text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-500">
+      Contents
+    </h2>
+    <ol className="mt-4 space-y-1.5">
+      {SECTIONS.map((title, i) => (
+        <li key={title}>
+          <a
+            href={`#s${i + 1}`}
+            className="flex gap-2.5 text-sm leading-snug text-neutral-500 transition hover:text-neutral-200"
+          >
+            <span className="w-4 shrink-0 text-right text-neutral-700">{i + 1}</span>
+            {title}
+          </a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+)
+
 export default function Privacy() {
   useDocumentTitle('Privacy Policy')
 
@@ -82,7 +121,7 @@ export default function Privacy() {
         </div>
       </dl>
 
-      <div className="mt-8 space-y-4">
+      <div className="mt-8 max-w-3xl space-y-4">
         <P>
           This Privacy Policy explains how <strong className="text-neutral-200">Lav Naruka</strong>,
           the developer of <strong className="text-neutral-200">Cat Rescue</strong>, handles
@@ -94,6 +133,10 @@ export default function Privacy() {
         </P>
       </div>
 
+      <div className="mt-14 lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-16">
+        <Contents />
+
+        <div className="mt-12 lg:mt-0">
       <Section n="1" title="Developer Information">
         <dl className="space-y-2 text-neutral-400">
           {[
@@ -404,6 +447,8 @@ export default function Privacy() {
       <p className="mt-14 border-t border-white/5 pt-6 text-xs text-neutral-600">
         © 2026 Lav Naruka. All rights reserved.
       </p>
+        </div>
+      </div>
     </article>
   )
 }

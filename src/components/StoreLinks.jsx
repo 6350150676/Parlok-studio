@@ -20,7 +20,7 @@ export default function StoreLinks({ game }) {
 
   if (live.length === 0) {
     return (
-      <div className="mt-12 flex items-start gap-3 rounded-2xl border border-white/5 bg-white/[0.02] px-5 py-4">
+      <div className="mt-8 flex items-start gap-3 rounded-2xl border border-white/5 bg-white/[0.02] px-5 py-4">
         <span
           aria-hidden="true"
           className="mt-[0.45rem] h-2 w-2 shrink-0 rounded-full"
@@ -35,7 +35,7 @@ export default function StoreLinks({ game }) {
   }
 
   return (
-    <div className="mt-12 flex flex-wrap gap-3">
+    <div className="mt-8 flex flex-wrap gap-3">
       {live.map(({ key, label, sub, Icon }) => (
         <a
           key={key}

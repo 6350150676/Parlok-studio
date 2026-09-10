@@ -24,43 +24,45 @@ export default function Game() {
         All games
       </Link>
 
-      <header className="mt-10 flex items-start gap-5">
-        <InkMark accent={game.accent} className="h-16 w-16 shrink-0" />
-        <div className="min-w-0 pt-1">
-          <h1 className="font-display text-4xl font-bold tracking-tight text-neutral-50">
+      <div className="mt-10 lg:grid lg:grid-cols-[20rem_minmax(0,1fr)] lg:gap-16">
+        {/* Identity and where to get it — held in view while the copy scrolls */}
+        <header className="lg:sticky lg:top-28 lg:self-start">
+          <InkMark accent={game.accent} className="h-20 w-20" />
+          <h1 className="mt-5 font-display text-4xl font-bold tracking-tight text-neutral-50">
             {game.title}
           </h1>
-          <p className="mt-2 font-display text-lg leading-snug text-neutral-400">{game.tagline}</p>
+          <p className="mt-3 font-display text-lg leading-snug text-neutral-400">{game.tagline}</p>
+          <StoreLinks game={game} />
+        </header>
+
+        <div className="mt-12 lg:mt-0">
+          <div className="space-y-4 leading-relaxed text-neutral-400">
+            {game.about.map((paragraph, i) => (
+              <p key={i} className="max-w-prose">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
+          {game.features?.length > 0 && (
+            <ul className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-white/5 bg-white/5 sm:grid-cols-2">
+              {game.features.map((feature) => (
+                <li
+                  key={feature}
+                  className="flex items-start gap-3 bg-[#0b0c0d] px-5 py-4 text-sm leading-relaxed text-neutral-400"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
+                    style={{ backgroundColor: game.accent }}
+                  />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-      </header>
-
-      <div className="mt-10 space-y-4 leading-relaxed text-neutral-400">
-        {game.about.map((paragraph, i) => (
-          <p key={i} className="max-w-prose">
-            {paragraph}
-          </p>
-        ))}
       </div>
-
-      {game.features?.length > 0 && (
-        <ul className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-white/5 bg-white/5 sm:grid-cols-2">
-          {game.features.map((feature) => (
-            <li
-              key={feature}
-              className="flex items-start gap-3 bg-[#0b0c0d] px-5 py-4 text-sm text-neutral-400"
-            >
-              <span
-                aria-hidden="true"
-                className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
-                style={{ backgroundColor: game.accent }}
-              />
-              {feature}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <StoreLinks game={game} />
     </article>
   )
 }

@@ -31,9 +31,17 @@ Studio name, motto and the home-page paragraph live in `src/data/studio.js`.
 
 ## Hosting
 
-Static build, any host. Deploy `dist/` after `npm run build`.
+Deployed to Cloudflare Workers, connected to this repo — every push to `main`
+rebuilds and redeploys automatically. Build command `npm run build`, and
+`wrangler.jsonc` tells the Worker to serve `dist`.
 
 It's a single-page app, so the host must serve `index.html` for unknown paths or
-`/cat-rescue` 404s on refresh. Both configs are already in the repo:
-`public/_redirects` (Netlify) and `vercel.json` (Vercel). On Cloudflare Pages set
-the build command to `npm run build` and the output directory to `dist`.
+`/cat-rescue` 404s on a hard refresh. On Cloudflare that's
+`assets.not_found_handling: "single-page-application"` in `wrangler.jsonc`.
+
+Moving to another host means bringing your own version of that rule:
+
+- **Netlify** — add `public/_redirects` containing `/*    /index.html   200`.
+  (Cloudflare Workers rejects that file as a redirect loop, which is why it isn't
+  in the repo.)
+- **Vercel** — `vercel.json` is already here and does it.

@@ -1,5 +1,5 @@
-import { useParams, Link } from 'react-router-dom'
-import { getGame } from '../data/games'
+import { useParams, Link, Navigate } from 'react-router-dom'
+import { getGame, getRenamedGame } from '../data/games'
 import { getPolicy } from '../policies'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { Contents, P } from '../components/policy'
@@ -8,9 +8,11 @@ import NotFound from './NotFound'
 export default function GamePrivacy() {
   const { slug } = useParams()
   const game = getGame(slug)
+  const renamed = game ? null : getRenamedGame(slug)
   const policy = getPolicy(slug)
   useDocumentTitle(game ? `${game.title} Privacy Policy` : null)
 
+  if (renamed) return <Navigate to={`/${renamed.slug}/privacy`} replace />
   if (!game || !policy) return <NotFound />
 
   const { Body, meta } = policy

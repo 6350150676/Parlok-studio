@@ -11,12 +11,13 @@ npm run build    # -> dist/
 ## Adding a game
 
 Edit `src/data/games.js`. Each entry gets a card on the home page and its own page
-at `/<slug>` — Cat Rescue is at `/cat-rescue`.
+at `/<slug>` — Save the Cat: Draw Puzzle is at `/save-the-cat-draw-puzzle`.
 
 ```js
 {
-  slug: 'cat-rescue',
-  title: 'Cat Rescue',
+  slug: 'save-the-cat-draw-puzzle',
+  formerSlugs: ['cat-rescue'],   // old URLs redirect here
+  title: 'Save the Cat: Draw Puzzle',
   tagline: '...',
   status: 'Coming soon',   // shown while both store links are null
   accent: '#f4a261',       // the colour block used as its icon
@@ -31,13 +32,13 @@ Studio name, motto and the home-page paragraph live in `src/data/studio.js`.
 
 ## Privacy policies
 
-Each game has its own policy at `/<slug>/privacy` — Cat Rescue's is at
-`/cat-rescue/privacy`. That's the URL to give the Play Console listing, since
+Each game has its own policy at `/<slug>/privacy` — Save the Cat: Draw Puzzle's is at
+`/save-the-cat-draw-puzzle/privacy`. That's the URL to give the Play Console listing, since
 Google wants one policy per app rather than one per studio.
 
 To add a policy for a new game:
 
-1. Copy `src/policies/cat-rescue.jsx` to `src/policies/<slug>.jsx` and edit the text.
+1. Copy `src/policies/save-the-cat-draw-puzzle.jsx` to `src/policies/<slug>.jsx` and edit the text.
 2. Register it in `src/policies/index.js`.
 
 The page furniture (headings, bullets, the contents nav) comes from
@@ -53,7 +54,7 @@ rebuilds and redeploys automatically. Build command `npm run build`, and
 `wrangler.jsonc` tells the Worker to serve `dist`.
 
 It's a single-page app, so the host must serve `index.html` for unknown paths or
-`/cat-rescue` 404s on a hard refresh. On Cloudflare that's
+`/save-the-cat-draw-puzzle` 404s on a hard refresh. On Cloudflare that's
 `assets.not_found_handling: "single-page-application"` in `wrangler.jsonc`.
 
 Moving to another host means bringing your own version of that rule:

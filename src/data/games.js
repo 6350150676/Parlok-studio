@@ -1,11 +1,15 @@
 // Add a game here and it appears on the home page with its own page at /<slug>.
 // Set playStore / appStore to null while a game is unreleased — the page then
 // shows "Coming soon" instead of a dead link.
+//
+// Renaming a game: change its slug and move the old one into formerSlugs. Old
+// URLs (including /<old>/privacy) then redirect instead of 404ing.
 
 export const games = [
   {
-    slug: 'cat-rescue',
-    title: 'Cat Rescue',
+    slug: 'save-the-cat-draw-puzzle',
+    formerSlugs: ['cat-rescue'],
+    title: 'Save the Cat: Draw Puzzle',
     tagline: 'A cat is in danger. You get one line.',
     status: 'Coming soon',
     accent: '#f4a261',
@@ -20,7 +24,7 @@ export const games = [
       '50 hand-made levels, each one a different question',
       'Endless levels after that, generated fresh',
       'Real physics — nothing is scripted, nothing is faked',
-      'No ads mid-puzzle, no timers, no energy bars',
+      'A daily puzzle with its own leaderboard',
     ],
     playStore: null,
     appStore: null,
@@ -28,3 +32,6 @@ export const games = [
 ]
 
 export const getGame = (slug) => games.find((g) => g.slug === slug)
+
+// The game that used to live at this slug, if any.
+export const getRenamedGame = (slug) => games.find((g) => g.formerSlugs?.includes(slug))

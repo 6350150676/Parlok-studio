@@ -1,10 +1,11 @@
 // A game's privacy policy lives at /<slug>/privacy. To add one for a new game,
-// copy src/policies/cat-rescue.jsx, edit the text, and register it here.
+// copy an existing file in this folder, edit the text, and register it here
+// under the game's slug.
 
-import CatRescuePolicy, { meta as catRescueMeta } from './cat-rescue.jsx'
+import SaveTheCatPolicy, { meta as saveTheCatMeta } from './save-the-cat-draw-puzzle.jsx'
 
 export const policies = {
-  'cat-rescue': { Body: CatRescuePolicy, meta: catRescueMeta },
+  'save-the-cat-draw-puzzle': { Body: SaveTheCatPolicy, meta: saveTheCatMeta },
 }
 
 export const getPolicy = (slug) => policies[slug]

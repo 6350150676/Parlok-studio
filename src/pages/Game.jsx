@@ -1,5 +1,5 @@
-import { useParams, Link } from 'react-router-dom'
-import { getGame } from '../data/games'
+import { useParams, Link, Navigate } from 'react-router-dom'
+import { getGame, getRenamedGame } from '../data/games'
 import { getPolicy } from '../policies'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import InkMark from '../components/InkMark'
@@ -9,9 +9,11 @@ import NotFound from './NotFound'
 export default function Game() {
   const { slug } = useParams()
   const game = getGame(slug)
+  const renamed = game ? null : getRenamedGame(slug)
   const hasPolicy = Boolean(getPolicy(slug))
   useDocumentTitle(game?.title ?? null)
 
+  if (renamed) return <Navigate to={`/${renamed.slug}`} replace />
   if (!game) return <NotFound />
 
   return (

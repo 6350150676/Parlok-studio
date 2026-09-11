@@ -1,8 +1,14 @@
 import { Section, Sub, P, B, Bullets, Link_ } from '../components/policy'
 
+const EMAIL = 'lovenaruka514@gmail.com'
+const SITE = 'https://parlok-studio.lovenaruka514.workers.dev'
+const POLICY_URL = `${SITE}/save-the-cat-draw-puzzle/privacy`
+
 export const meta = {
   effective: 'September 11, 2026',
   updated: 'September 11, 2026',
+  // Drives the Request Data Deletion form at the top of the page.
+  deletion: { email: EMAIL, within: '30 days' },
   intro: [
     <>
       This Privacy Policy explains how <B>Lav Naruka</B>, the developer of{' '}
@@ -35,9 +41,6 @@ export const meta = {
   ],
 }
 
-const EMAIL = 'lovenaruka514@gmail.com'
-const SITE = 'https://parlok-studio.lovenaruka514.workers.dev'
-const POLICY_URL = `${SITE}/save-the-cat-draw-puzzle/privacy`
 
 const Mail = () => <Link_ href={`mailto:${EMAIL}`}>{EMAIL}</Link_>
 const Site = ({ href = SITE }) => <Link_ href={href}>{href}</Link_>
@@ -339,6 +342,16 @@ export default function SaveTheCatPolicy() {
         <P>
           If you believe that a leaderboard record associated with you should be deleted, you can
           contact <Mail />.
+        </P>
+        <P>
+          You can also use the{' '}
+          <a
+            href="#delete-data"
+            className="text-neutral-200 underline underline-offset-4 hover:text-white"
+          >
+            Request Data Deletion
+          </a>{' '}
+          form at the top of this page.
         </P>
         <P>
           Please provide enough information to help identify the relevant record. Please do not send

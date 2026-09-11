@@ -10,7 +10,7 @@ export default function Game() {
   const { slug } = useParams()
   const game = getGame(slug)
   const renamed = game ? null : getRenamedGame(slug)
-  const hasPolicy = Boolean(getPolicy(slug))
+  const policy = getPolicy(slug)
   useDocumentTitle(game?.title ?? null)
 
   if (renamed) return <Navigate to={`/${renamed.slug}`} replace />
@@ -38,13 +38,23 @@ export default function Game() {
           <p className="mt-3 font-display text-lg leading-snug text-neutral-400">{game.tagline}</p>
           <StoreLinks game={game} />
 
-          {hasPolicy && (
-            <Link
-              to={`/${slug}/privacy`}
-              className="mt-6 inline-block text-sm text-neutral-500 transition hover:text-neutral-200"
-            >
-              Privacy policy
-            </Link>
+          {policy && (
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              <Link
+                to={`/${slug}/privacy`}
+                className="text-neutral-500 transition hover:text-neutral-200"
+              >
+                Privacy policy
+              </Link>
+              {policy.meta.deletion && (
+                <Link
+                  to={`/${slug}/privacy#delete-data`}
+                  className="text-neutral-500 transition hover:text-neutral-200"
+                >
+                  Request data deletion
+                </Link>
+              )}
+            </div>
           )}
         </header>
 

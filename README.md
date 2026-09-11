@@ -44,6 +44,18 @@ To add a policy for a new game:
 The page furniture (headings, bullets, the contents nav) comes from
 `src/components/policy.jsx`, so a policy file is only its own words.
 
+### Data deletion requests
+
+A policy whose `meta` has a `deletion` entry gets a **Request Data Deletion** form
+at the top of its page — `/<slug>/privacy#delete-data`, which is also the URL for
+the Play Console "Delete data URL" field. Submissions are emailed to
+`deletion.email` through [FormSubmit](https://formsubmit.co); if that can't be
+reached, the form falls back to a pre-filled email.
+
+FormSubmit needs a one-time activation: after the first submission from a new
+domain it emails an **Activate Form** link to that address, and nothing is
+delivered until it's clicked. Moving to a custom domain means activating again.
+
 `/privacy` redirects to the first registered policy, so the older studio-level
 URL keeps working.
 

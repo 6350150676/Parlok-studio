@@ -1,8 +1,10 @@
-import { useParams, Link, Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useParams, useLocation, Link, Navigate } from 'react-router-dom'
 import { getGame, getRenamedGame } from '../data/games'
 import { getPolicy } from '../policies'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { Contents, P } from '../components/policy'
+import DeletionRequest from '../components/DeletionRequest'
 import NotFound from './NotFound'
 
 export default function GamePrivacy() {
@@ -11,6 +13,12 @@ export default function GamePrivacy() {
   const renamed = game ? null : getRenamedGame(slug)
   const policy = getPolicy(slug)
   useDocumentTitle(game ? `${game.title} Privacy Policy` : null)
+
+  // Content renders after navigation, so the browser can't jump to #delete-data itself.
+  const { hash } = useLocation()
+  useEffect(() => {
+    if (hash) document.getElementById(hash.slice(1))?.scrollIntoView()
+  }, [hash])
 
   if (renamed) return <Navigate to={`/${renamed.slug}/privacy`} replace />
   if (!game || !policy) return <NotFound />
@@ -47,7 +55,16 @@ export default function GamePrivacy() {
         </div>
       </dl>
 
-      <div className="mt-8 max-w-3xl space-y-4">
+      {meta.deletion && (
+        <DeletionRequest
+          gameTitle={game.title}
+          email={meta.deletion.email}
+          within={meta.deletion.within}
+          accent={game.accent}
+        />
+      )}
+
+      <div className="mt-10 max-w-3xl space-y-4">
         {meta.intro.map((node, i) => (
           <P key={i}>{node}</P>
         ))}

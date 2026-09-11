@@ -190,9 +190,8 @@ export default function SaveTheCatPolicy() {
           disclose data collection and use associated with its advertising services.
         </P>
         <P>
-          The game does <B>not</B> directly collect your advertising identifier for its own
-          independent advertising database. Advertising-related processing is performed through the
-          advertising services integrated into the game.
+          Advertising-related processing is performed through the advertising services integrated
+          into the game.
         </P>
 
         <Sub>Personalized and Non-Personalized Advertising</Sub>

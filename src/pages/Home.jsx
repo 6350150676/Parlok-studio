@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { studio } from '../data/studio'
 import { games } from '../data/games'
 import useDocumentTitle from '../hooks/useDocumentTitle'
-import InkMark from '../components/InkMark'
+import GameIcon from '../components/GameIcon'
 import StatusPill from '../components/StatusPill'
 
 export default function Home() {
@@ -47,9 +47,9 @@ export default function Home() {
                 className="group block rounded-2xl border border-white/5 bg-white/[0.02] p-5 transition hover:border-white/10 hover:bg-white/[0.05]"
               >
                 <div className="flex items-start gap-4">
-                  <InkMark
-                    accent={game.accent}
-                    className="h-12 w-12 shrink-0 transition group-hover:scale-[1.04]"
+                  <GameIcon
+                    game={game}
+                    className="h-14 w-14 shrink-0 transition group-hover:scale-[1.04]"
                   />
                   <div className="min-w-0 flex-1">
                     <h3 className="font-display font-semibold tracking-tight text-neutral-100">
@@ -58,6 +58,22 @@ export default function Home() {
                     <p className="mt-1 text-sm leading-relaxed text-neutral-500">{game.tagline}</p>
                   </div>
                 </div>
+
+                {game.screenshots?.length > 0 && (
+                  <div className="mt-5 grid grid-cols-3 gap-2">
+                    {game.screenshots.slice(0, 3).map((shot) => (
+                      <img
+                        key={shot.src}
+                        src={shot.src}
+                        alt=""
+                        loading="lazy"
+                        width="562"
+                        height="1000"
+                        className="aspect-[9/16] w-full rounded-xl object-cover ring-1 ring-white/5 transition group-hover:ring-white/15"
+                      />
+                    ))}
+                  </div>
+                )}
 
                 <div className="mt-4 flex items-center justify-between">
                   {game.status ? (

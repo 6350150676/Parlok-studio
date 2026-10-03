@@ -42,14 +42,14 @@ export default function StoreLinks({ game }) {
           href={game[key]}
           target="_blank"
           rel="noreferrer"
-          className="group flex items-center gap-3 rounded-2xl border border-neutral-800 bg-neutral-900 px-5 py-3 transition hover:border-neutral-600 hover:bg-neutral-800"
+          className="group flex items-center gap-3 rounded-2xl border border-white/20 bg-black px-6 py-3.5 shadow-lg shadow-black/40 transition hover:-translate-y-0.5 hover:border-white/40"
         >
-          <Icon className="h-6 w-6 text-neutral-300 transition group-hover:text-white" />
+          <Icon className="h-7 w-7 text-white" />
           <span className="leading-tight">
-            <span className="block text-[10px] uppercase tracking-widest text-neutral-500">
+            <span className="block text-[10px] uppercase tracking-widest text-neutral-400">
               {sub}
             </span>
-            <span className="block font-display font-medium text-neutral-100">{label}</span>
+            <span className="block font-display text-lg font-semibold text-white">{label}</span>
           </span>
         </a>
       ))}

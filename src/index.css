@@ -25,6 +25,14 @@ body {
   background-attachment: fixed, fixed;
 }
 
+/* Swipeable strips that shouldn't show a scrollbar track. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes rise {
   from {
     opacity: 0;

@@ -5,8 +5,8 @@ const SITE = 'https://parlok-studio.lovenaruka514.workers.dev'
 const POLICY_URL = `${SITE}/save-the-cat-draw-puzzle/privacy`
 
 export const meta = {
-  effective: 'September 11, 2026',
-  updated: 'September 11, 2026',
+  effective: 'October 8, 2026',
+  updated: 'October 8, 2026',
   // Drives the Request Data Deletion form at the top of the page.
   deletion: { email: EMAIL, within: '30 days' },
   intro: [
@@ -25,8 +25,10 @@ export const meta = {
     'Information We Collect',
     'How We Use Information',
     'Advertising — Google AdMob',
+    'Advertising — Unity Ads',
     'Advertising Frequency and Rewarded Ads',
-    'Analytics',
+    'Analytics and Crash Reporting',
+    'In-App Purchases',
     'User Accounts',
     'Third-Party Service — Supabase',
     'Third-Party Service — Google AdMob',
@@ -82,7 +84,9 @@ export default function SaveTheCatPolicy() {
         <Bullets
           items={[
             'Daily leaderboard functionality, if enabled and used by you',
-            'Advertising through Google AdMob',
+            'Advertising through Google AdMob and Unity Ads',
+            'Gameplay analytics and crash reporting through Firebase',
+            'In-app purchases through Google Play',
             'Basic operation and security of third-party services used by the game',
           ]}
         />
@@ -218,7 +222,21 @@ export default function SaveTheCatPolicy() {
         </P>
       </Section>
 
-      <Section n="5" title="Advertising Frequency and Rewarded Ads">
+      <Section n="5" title="Advertising — Unity Ads">
+        <P>
+          Some advertisements in the game are served by <B>Unity Ads</B>, a service provided by{' '}
+          <B>Unity Technologies</B>, through Google AdMob mediation.
+        </P>
+        <P>
+          When Unity Ads serves an advertisement, Unity may process information such as device and
+          advertising identifiers, IP address, device information, app information, and information
+          relating to ad delivery, measurement, and fraud prevention, depending on the applicable
+          settings, user choices, region, and Unity&rsquo;s policies.
+        </P>
+        <P>For more information, please refer to Unity&rsquo;s privacy policy.</P>
+      </Section>
+
+      <Section n="6" title="Advertising Frequency and Rewarded Ads">
         <P>
           Save the Cat: Draw Puzzle may use interstitial advertisements at natural breaks in
           gameplay.
@@ -239,20 +257,64 @@ export default function SaveTheCatPolicy() {
         <P>The game does not require users to click advertisements in order to play.</P>
       </Section>
 
-      <Section n="6" title="Analytics">
+      <Section n="7" title="Analytics and Crash Reporting">
         <P>
-          Save the Cat: Draw Puzzle does not intentionally use a separate third-party analytics
-          service such as Firebase Analytics or Unity Analytics to create behavioral analytics
-          profiles about players.
+          Save the Cat: Draw Puzzle uses <B>Firebase Analytics</B> and <B>Firebase Crashlytics</B>,
+          services provided by <B>Google LLC</B>, to understand how the game is played and to fix
+          crashes.
+        </P>
+
+        <Sub>Firebase Analytics</Sub>
+        <P>The game sends gameplay events to Firebase Analytics, such as:</P>
+        <Bullets
+          items={[
+            'Levels started, completed, failed, or quit, with stars, time, and ink used',
+            'Hints offered and used',
+            'Advertisements shown and rewards earned',
+            'In-game coins earned and spent, and items unlocked or equipped',
+            'Screens opened',
+          ]}
+        />
+        <P>
+          Firebase Analytics also collects information such as an app-instance identifier, device
+          model, operating system version, app version, approximate location derived from IP
+          address, and session information.
+        </P>
+
+        <Sub>Firebase Crashlytics</Sub>
+        <P>
+          If the game crashes or hits an error, Firebase Crashlytics collects a crash report. This
+          may include the error and stack trace, device model, operating system version, app
+          version, the time of the crash, and a short log of the in-game actions leading up to it.
         </P>
         <P>
-          However, advertising services may collect and process information necessary for
-          advertising measurement, reporting, fraud prevention, and related advertising
-          functionality as described in this Privacy Policy.
+          This information is used to fix bugs, improve levels and gameplay, and understand how the
+          game is used. It is not used to identify you by your real-world identity.
+        </P>
+        <P>
+          Advertising services may also collect and process information necessary for advertising
+          measurement, reporting, fraud prevention, and related advertising functionality as
+          described in this Privacy Policy.
         </P>
       </Section>
 
-      <Section n="7" title="User Accounts">
+      <Section n="8" title="In-App Purchases">
+        <P>
+          Save the Cat: Draw Puzzle offers optional in-app purchases. Purchases are processed by{' '}
+          <B>Google Play Billing</B>, and the purchase flow inside the game is handled by{' '}
+          <B>Unity IAP</B> (Unity Technologies).
+        </P>
+        <P>
+          We never see or store your card number or other payment details. Payment information is
+          handled by Google Play under Google&rsquo;s own terms and privacy policy.
+        </P>
+        <P>
+          When you make a purchase, the game receives only the order ID and details of what was
+          bought, which are used to deliver the item and confirm the purchase.
+        </P>
+      </Section>
+
+      <Section n="9" title="User Accounts">
         <P>Save the Cat: Draw Puzzle does not require or provide traditional user accounts.</P>
         <P>
           You do not need to create an account, choose a password, or provide an email address to
@@ -264,7 +326,7 @@ export default function SaveTheCatPolicy() {
         </P>
       </Section>
 
-      <Section n="8" title="Third-Party Service — Supabase">
+      <Section n="10" title="Third-Party Service — Supabase">
         <P>
           Save the Cat: Draw Puzzle may use <B>Supabase</B> to provide database infrastructure for
           its daily leaderboard.
@@ -284,7 +346,7 @@ export default function SaveTheCatPolicy() {
         </P>
       </Section>
 
-      <Section n="9" title="Third-Party Service — Google AdMob">
+      <Section n="11" title="Third-Party Service — Google AdMob">
         <P>
           Save the Cat: Draw Puzzle uses the Google Mobile Ads SDK / Google AdMob to provide
           advertising functionality.
@@ -318,7 +380,7 @@ export default function SaveTheCatPolicy() {
         <P>For more information, please refer to Google&rsquo;s applicable privacy documentation.</P>
       </Section>
 
-      <Section n="10" title="Data Retention">
+      <Section n="12" title="Data Retention">
         <P>Daily leaderboard information is intended to support the game&rsquo;s daily leaderboard.</P>
         <P>
           Leaderboard records may be periodically removed or reset as part of the game&rsquo;s daily
@@ -329,12 +391,13 @@ export default function SaveTheCatPolicy() {
           the Cat: Draw Puzzle or clear the game&rsquo;s application data.
         </P>
         <P>
-          Information processed by third-party services such as Google AdMob or Supabase may be
+          Information processed by third-party services such as Google AdMob, Unity Ads, Firebase,
+          Google Play, or Supabase may be
           retained according to their respective policies and applicable legal requirements.
         </P>
       </Section>
 
-      <Section n="11" title="Data Deletion Requests">
+      <Section n="13" title="Data Deletion Requests">
         <P>
           Save the Cat: Draw Puzzle does not use traditional user accounts, so there is no account
           profile that you need to delete.
@@ -360,11 +423,11 @@ export default function SaveTheCatPolicy() {
         <P>Requests will be handled in accordance with applicable privacy and data-protection laws.</P>
         <P>
           Please note that information processed independently by third-party providers such as
-          Google may be subject to their own privacy policies and procedures.
+          Google or Unity may be subject to their own privacy policies and procedures.
         </P>
       </Section>
 
-      <Section n="12" title="Information We Do Not Collect for Core Game Functionality">
+      <Section n="14" title="Information We Do Not Collect for Core Game Functionality">
         <P>
           Save the Cat: Draw Puzzle does not require or intentionally collect the following
           information for its core game functionality:
@@ -387,9 +450,13 @@ export default function SaveTheCatPolicy() {
           ]}
         />
         <P>
-          However, third-party advertising services integrated into the game may process device,
-          advertising, network, and related information as described in the <B>Advertising</B>{' '}
-          sections of this Privacy Policy.
+          However, third-party advertising and analytics services integrated into the game may
+          process device, advertising, network, and related information as described in the{' '}
+          <B>Advertising</B> and <B>Analytics</B> sections of this Privacy Policy.
+        </P>
+        <P>
+          In-app purchases are paid through Google Play, and the game never receives your payment
+          details, as described in the <B>In-App Purchases</B> section.
         </P>
         <P>
           Save the Cat: Draw Puzzle does not sell personal information as an independent business
@@ -397,7 +464,7 @@ export default function SaveTheCatPolicy() {
         </P>
       </Section>
 
-      <Section n="13" title="Security">
+      <Section n="15" title="Security">
         <P>
           Reasonable technical measures are used to protect information processed through the
           game&rsquo;s services.
@@ -416,7 +483,7 @@ export default function SaveTheCatPolicy() {
         </P>
       </Section>
 
-      <Section n="14" title="Children's Privacy">
+      <Section n="16" title="Children's Privacy">
         <P>
           Save the Cat: Draw Puzzle does not require players to create an account or provide contact
           information in order to play.
@@ -438,7 +505,7 @@ export default function SaveTheCatPolicy() {
         </P>
       </Section>
 
-      <Section n="15" title="Privacy Rights">
+      <Section n="17" title="Privacy Rights">
         <P>
           Depending on where you live and which privacy laws apply to you, you may have certain
           rights regarding information associated with you.
@@ -459,7 +526,7 @@ export default function SaveTheCatPolicy() {
         <P>Nothing in this Privacy Policy limits any rights you may have under applicable law.</P>
       </Section>
 
-      <Section n="16" title="Changes to This Privacy Policy">
+      <Section n="18" title="Changes to This Privacy Policy">
         <P>
           This Privacy Policy may be updated if the game&rsquo;s functionality, data practices,
           third-party services, advertising services, or applicable legal requirements change.
@@ -474,7 +541,7 @@ export default function SaveTheCatPolicy() {
         </P>
       </Section>
 
-      <Section n="17" title="Contact">
+      <Section n="19" title="Contact">
         <P>
           If you have questions, concerns, or privacy requests regarding Save the Cat: Draw Puzzle,
           please contact:
